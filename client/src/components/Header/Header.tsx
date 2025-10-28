@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="header">
+      <header className={`header ${isActive ? "active" : ""}`}>
         {/* Logo */}
         <h3 className="logo">Control</h3>
         {/* Hamburger button */}
