@@ -1,0 +1,13 @@
+/* Import tailwind css */
+@import "tailwindcss";
+
+* {
+  font-family: "Poppins";
+  font-weight: normal;
+  color: #f1f1f1;
+}
+
+body {
+  background-color: #16213e;
+  overflow-x: hidden;
+}

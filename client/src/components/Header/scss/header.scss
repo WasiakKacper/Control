@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  border: none;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  color: #f1f1f1;
+  padding: 1rem;
+  position: relative;
+}
+
+.logo {
+  font-size: 1.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hamburger {
+  width: 40px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background: transparent;
+  cursor: pointer;
+
+  .line {
+    width: 100%;
+    height: 4px;
+    background-color: #f1f1f1;
+    transition: all 300ms;
+  }
+}
+
+.hamburger.active .line.up {
+  rotate: 45deg;
+  transform: translateY(10px);
+}
+.hamburger.active .line.down {
+  rotate: -45deg;
+  transform: translateY(-10px);
+}
+
+nav {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  position: absolute;
+  top: 100%;
+  left: 110%;
+  padding: 10vw;
+  transition: all 300ms ease;
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    font-family: "Notable", sans-serif;
+    color: #e94560;
+    transition: all 300ms ease;
+  }
+
+  a:hover {
+    transform: translateX(20px);
+  }
+}
+
+nav.active {
+  top: 100%;
+  left: 0%;
+}
