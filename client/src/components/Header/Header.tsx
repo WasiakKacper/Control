@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 /* Import CSS */
-import "./scss/header.scss";
+import "./scss/Header.scss";
 
 const Header = () => {
   const [isActive, setIsActive] = useState(false); //Menu visibility state
@@ -11,7 +11,10 @@ const Header = () => {
     <>
       <header className={`header ${isActive ? "active" : ""}`}>
         {/* Logo */}
-        <h3 className="logo">Control</h3>
+        <h3 className="logo">
+          <img src="/streak.svg" alt="Control" />
+          Control
+        </h3>
         {/* Hamburger button */}
         <button
           onClick={() => setIsActive(!isActive)} ////Make menu visable
