@@ -59,7 +59,7 @@ const About: React.FC = () => {
       <section className="aboutWrapper">
         {cardsContent.map((card, index) => (
           <motion.article
-            key={card.index}
+            key={index}
             className={`aboutCard ${whatIndex === index ? "active" : ""}`}
             onClick={() => setWhatIndex(index)}
             initial={{ opacity: 0, y: 100 }}

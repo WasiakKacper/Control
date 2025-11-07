@@ -7,9 +7,9 @@
 
 main {
   margin-bottom: 12rem;
-  h1 {
+  .homeHeader {
     font-family: "Notable", sans-serif;
-    font-size: clamp(1.2rem, 4vw, 4rem);
+    font-size: clamp(1.2rem, 3vw, 4rem);
     color: #fff;
     padding: 10rem 5rem;
 
@@ -27,7 +27,6 @@ main {
     height: auto;
     display: flex;
     justify-content: end;
-    padding: 2vw;
 
     .dashboardMini {
       width: 90vw;
@@ -36,12 +35,8 @@ main {
       background-color: #222;
       border: 1px solid #fff;
       border-radius: 2em;
-      transform: rotate(-10deg);
       box-sizing: border-box;
-    }
-
-    > * {
-      transform: rotate(10deg);
+      transform: translateX(2rem);
     }
 
     /* Mobile devices view */

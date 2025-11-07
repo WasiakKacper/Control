@@ -1,14 +1,36 @@
 /* Import css */
 import "./scss/Home.scss";
 
+/* Import motion */
+import { motion } from "motion/react";
+
 const Home = () => {
   return (
     <main>
-      <h1 className="text-[1.5rem] md:text-[2.5rem] lg:text-[3rem]">
+      <motion.h1
+        className="text-[1.5rem] md:text-[2.5rem] lg:text-[3rem] homeHeader"
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          opacity: { duration: 0.4, delay: 0.3 },
+          y: { type: "spring", bounce: 0.1, delay: 0.3 },
+        }}
+        viewport={{ once: true }}
+      >
         Gain full control
         <br /> over your process
-      </h1>
-      <div className="dashboardWrapper">
+      </motion.h1>
+      <motion.div
+        className="dashboardWrapper"
+        initial={{ opacity: 0, y: -200, x: 200 }}
+        animate={{ opacity: 1, y: 0, x: 0 }}
+        transition={{
+          duration: 0.8,
+          delay: 0.3,
+          ease: "easeOut",
+        }}
+        viewport={{ once: true }}
+      >
         <section className="dashboardMini">
           <div className="headerMini">
             <div className="iconMini">
@@ -32,26 +54,62 @@ const Home = () => {
                 <h3>Title</h3>
               </header>
               <section className="row">
-                <div className="rectangle">
+                <motion.div
+                  className="rectangle"
+                  initial={{ opacity: 0, y: -200, x: 200 }}
+                  animate={{ opacity: 1, y: 0, x: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.3,
+                    ease: "easeOut",
+                  }}
+                >
                   <img src="/listDashboard.png" alt="" />
-                </div>
-                <div className="square">
+                </motion.div>
+                <motion.div
+                  className="square"
+                  initial={{ opacity: 0, y: -200, x: 200 }}
+                  animate={{ opacity: 1, y: 0, x: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.4,
+                    ease: "easeOut",
+                  }}
+                >
                   <img src="/chartDashboard.png" alt="" />
-                </div>
+                </motion.div>
               </section>
 
               <section className="row">
-                <div className="square">
+                <motion.div
+                  className="square"
+                  initial={{ opacity: 0, y: -200, x: 200 }}
+                  animate={{ opacity: 1, y: 0, x: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.5,
+                    ease: "easeOut",
+                  }}
+                >
                   <img src="/streakDashboard.png" alt="" />
-                </div>
-                <div className="rectangle">
+                </motion.div>
+                <motion.div
+                  className="rectangle"
+                  initial={{ opacity: 0, y: -200, x: 200 }}
+                  animate={{ opacity: 1, y: 0, x: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.6,
+                    ease: "easeOut",
+                  }}
+                >
                   <img src="/calendaryDashboard.png" alt="" />
-                </div>
+                </motion.div>
               </section>
             </article>
           </div>
         </section>
-      </div>
+      </motion.div>
     </main>
   );
 };
