@@ -7,7 +7,7 @@ import { useState } from "react";
 /* Motion import */
 import { motion } from "motion/react";
 
-const About: React.FC = () => {
+const About = () => {
   const [whatIndex, setWhatIndex] = useState<number | null>(0);
 
   const cardsContent = [

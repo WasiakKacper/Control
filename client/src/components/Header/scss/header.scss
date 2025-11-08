@@ -16,13 +16,13 @@
   background-color: #333;
   padding: 1rem;
 
-  .logo {
+  .headerLogo {
     display: flex;
     align-items: center;
     font-size: 1.5rem;
     cursor: pointer;
 
-    img {
+    .headerImg {
       width: 2rem;
       margin-right: 0.5rem;
     }
@@ -72,6 +72,7 @@ nav {
   background-color: #22222273;
   backdrop-filter: blur(20px);
   z-index: 1000;
+  font-size: clamp(1.5rem, 5vw, 4rem);
 
   a {
     cursor: pointer;

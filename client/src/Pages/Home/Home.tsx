@@ -2,9 +2,12 @@
 import "./scss/Home.scss";
 
 /* Import motion */
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 const Home = () => {
+  const { scrollYProgress } = useScroll();
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
+
   return (
     <main>
       <motion.h1
@@ -29,6 +32,7 @@ const Home = () => {
           delay: 0.3,
           ease: "easeOut",
         }}
+        style={{ x }}
         viewport={{ once: true }}
       >
         <section className="dashboardMini">
