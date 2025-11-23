@@ -3,9 +3,9 @@
   margin: 0;
 
   .aboutHeader {
-    font-size: 2rem;
+    font-size: clamp(1rem, 2vw, 2rem);
     font-family: "Notable", sans-serif;
-    padding: 5rem;
+    padding: clamp(2rem, 1vw, 5rem);
     background: linear-gradient(to bottom, #333, #222);
   }
 
@@ -14,26 +14,32 @@
     justify-content: space-between;
     z-index: 1;
     padding: 5rem;
+    width: 100vw;
+    overflow-x: auto;
+    gap: clamp(2rem, 2vw, 4rem);
+
+    -ms-overflow-style: none; // IE 10+
+    scrollbar-width: none; // Firefox
+    &::-webkit-scrollbar {
+      display: none; // Chrome, Safari
+    }
 
     .aboutCard {
       position: relative;
       display: flex;
+      flex: 0 0 auto;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
+      gap: clamp(2rem, 2vw, 4rem);
       width: 25%;
+      min-width: 300px;
       padding: 4rem 0;
       background-color: #222;
-      border: 1px solid #333;
       cursor: pointer;
       transition: transform 300ms ease-in-out;
       box-shadow: -15px 15px 0px 0px #333;
-
-      &:hover {
-        transform: translateY(-20px);
-        z-index: 1;
-      }
+      border: 1px solid #333;
 
       &.active {
         border: 1px solid #fff;
@@ -42,7 +48,7 @@
       }
 
       .icon {
-        width: 25%;
+        width: clamp(5rem, 6vw, 25%);
         aspect-ratio: 1 / 1;
         height: auto;
       }
@@ -56,15 +62,16 @@
   .informationWrapper {
     display: flex;
     flex-direction: column;
-    padding: 5rem;
-    width: 40%;
+    padding: clamp(1rem, 1vw, 5rem);
+    width: 100%;
     max-width: 600px;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1vw, 1.2rem);
     gap: 3rem;
 
-    a {
+    .scrollToLoginBtn {
       text-decoration: underline;
       font-family: "Notable", sans-serif;
+      cursor: pointer;
     }
   }
 }

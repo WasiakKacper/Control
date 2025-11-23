@@ -1,5 +1,6 @@
 /* Import React */
 import { useState } from "react";
+import { Link } from "react-scroll";
 
 /* Import CSS */
 import "./scss/Header.scss";
@@ -8,7 +9,7 @@ const Header = () => {
   const [isActive, setIsActive] = useState(false); //Menu visibility state
 
   return (
-    <>
+    <div className="headerWrapper">
       <header className={`header ${isActive ? "active" : ""}`}>
         {/* Logo */}
         <h3 className="headerLogo">
@@ -24,12 +25,42 @@ const Header = () => {
           <span className="line down"></span>
         </button>
         <nav className={isActive ? "active" : ""}>
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Sign in</a>
+          <Link
+            to="home"
+            duration={500}
+            smooth={true}
+            onClick={() => {
+              setIsActive(false);
+            }}
+            className="navBtn"
+          >
+            Home
+          </Link>
+          <Link
+            to="about"
+            duration={500}
+            smooth={true}
+            onClick={() => {
+              setIsActive(false);
+            }}
+            className="navBtn"
+          >
+            About
+          </Link>
+          <Link
+            to="login"
+            duration={500}
+            smooth={true}
+            onClick={() => {
+              setIsActive(false);
+            }}
+            className="navBtn"
+          >
+            Sign in
+          </Link>
         </nav>
       </header>
-    </>
+    </div>
   );
 };
 

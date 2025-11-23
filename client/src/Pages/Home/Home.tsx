@@ -6,12 +6,13 @@ import { motion, useScroll, useTransform } from "motion/react";
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+  const y = useTransform(scrollYProgress, [1, 0], ["-2.5%", "0%"]);
 
   return (
     <main>
       <motion.h1
-        className="text-[1.5rem] md:text-[2.5rem] lg:text-[3rem] homeHeader"
+        className="homeHeader"
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -32,7 +33,7 @@ const Home = () => {
           delay: 0.3,
           ease: "easeOut",
         }}
-        style={{ x }}
+        style={{ x, y }}
         viewport={{ once: true }}
       >
         <section className="dashboardMini">
@@ -47,7 +48,6 @@ const Home = () => {
               <div className="buttonWrapperMini">
                 <button>New tracker</button>
               </div>
-              <hr />
               <div className="listMini">
                 <h4>My trackers</h4>
                 <p>Title</p>

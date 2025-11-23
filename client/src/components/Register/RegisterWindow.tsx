@@ -24,7 +24,7 @@ const RegisterWindow: React.FC<RegisterWindowProps> = ({
       }}
       viewport={{ once: true }}
     >
-      <h4 className="loginHeader">Login</h4>
+      <h4 className="loginHeader">Register</h4>
       <form action="">
         <input type="email" placeholder="E-mail" />
         <input type="password" placeholder="Password" />
@@ -32,8 +32,8 @@ const RegisterWindow: React.FC<RegisterWindowProps> = ({
         <button>Sign up</button>
       </form>
       <p>
-        No account yet?{" "}
-        <span onClick={() => setLoginOrRegister("login")}>Create one now!</span>
+        Already have an account?{" "}
+        <span onClick={() => setLoginOrRegister("login")}>Log in here!</span>
       </p>
     </motion.article>
   );

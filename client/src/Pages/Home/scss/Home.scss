@@ -9,7 +9,7 @@ main {
   margin-bottom: 12rem;
   .homeHeader {
     font-family: "Notable", sans-serif;
-    font-size: clamp(1.2rem, 3vw, 4rem);
+    font-size: clamp(1.2rem, 4vw, 4rem);
     color: #fff;
     padding: 10rem 5rem;
 
@@ -23,128 +23,72 @@ main {
   }
 
   .dashboardWrapper {
-    width: 100%;
-    height: auto;
+    max-width: 100%;
     display: flex;
     justify-content: end;
-
+    padding-right: 1rem;
+    aspect-ratio: 16/9;
     .dashboardMini {
-      width: 90vw;
-      aspect-ratio: 16 / 9;
-      max-width: 1200px;
-      background-color: #222;
-      border: 1px solid #fff;
-      border-radius: 2em;
-      box-sizing: border-box;
-      transform: translateX(2rem);
-    }
+      width: 95%;
+      border: 1px solid #d9d9d9;
 
-    /* Mobile devices view */
-    @media only screen and (max-width: 768px) {
-      .dashboardMini {
-        width: 95vw;
-        border-radius: 1.5em;
-        transform: rotate(-6deg);
-      }
-    }
-
-    @media only screen and (max-width: 480px) {
-      .dashboardMini {
-        width: 100vw;
-        border-radius: 1em;
-        transform: rotate(-3deg);
-      }
-    }
-
-    .headerMini {
-      width: 100%;
-      height: 8%;
-      background-color: #333;
-      border-radius: 2rem 2rem 0 0;
-      padding: 0 clamp(5px, 2vw, 25px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      .iconMini {
-        width: clamp(10px, 2vw, 25px);
-      }
-
-      .avatarMini {
-        width: clamp(10px, 2.5vw, 30px);
-        height: clamp(10px, 2.5vw, 30px);
-        aspect-ratio: 1/1;
-        background-color: #d9d9d9;
-        border-radius: 100%;
-      }
-    }
-
-    .wrapperMini {
-      display: flex;
-      width: 100%;
-      height: 92%;
-
-      .sidebarMini {
-        width: 20%;
-        background-color: #262626;
-        border-radius: 0 0 0 2rem;
+      .headerMini {
+        width: 100%;
+        padding: 0.8em;
+        background-color: #333;
         display: flex;
-        flex-direction: column;
-        padding: clamp(1rem, 2vw, 3rem) clamp(0.1rem, 1vw, 1rem);
+        justify-content: space-between;
+        align-items: center;
 
-        .buttonWrapperMini {
-          display: flex;
-          justify-content: center;
-          button {
-            font-family: "Notable", sans-serif;
-            padding: 1vw;
-            background-color: #262626;
-            border: 2px solid #fff;
-            border-radius: 0.5rem;
-            font-size: clamp(0.1rem, 1vw, 1rem);
-            margin: 0 auto;
-          }
+        .iconMini {
+          width: clamp(25px, 1vw, 55px);
         }
-
-        hr {
-          width: 90%;
-          height: 2px;
+        .avatarMini {
+          width: clamp(26px, 1vw, 55px);
+          height: clamp(26px, 1vw, 55px);
           background-color: #fff;
-          margin: 1rem auto;
-        }
-
-        .listMini {
-          h4 {
-            font-weight: 500;
-            font-size: clamp(0.2rem, 1.2vw, 1.2rem);
-            margin-bottom: clamp(0.2rem, 1vw, 1rem);
-          }
-          p {
-            font-size: clamp(0.1rem, 1vw, 1rem);
-          }
+          border-radius: 100%;
         }
       }
-
-      .mainMini {
-        padding: clamp(0.2rem, 3vw, 1.5rem);
+      .wrapperMini {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        width: 80%;
 
-        h3 {
-          width: 100%;
-          font-size: clamp(0.5rem, 3vw, 2rem);
-          text-align: end;
-          padding: clamp(0.5rem, 3vw, 2rem);
+        .sidebarMini {
+          width: 25%;
+          background-color: #262626;
+          display: block;
+          padding: 0 1rem;
+
+          .buttonWrapperMini {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid #fff;
+
+            button {
+              width: 80%;
+              text-align: center;
+              padding: 1rem 0.5rem;
+              border: 3px solid #fff;
+              border-radius: 1rem;
+              font-family: "Notable", sans-serif;
+              font-size: clamp(14px, 1vw, 20px);
+            }
+          }
+          .listMini {
+            h4 {
+              font-weight: 600;
+              font-size: 1.2rem;
+              padding: 1.5rem 0;
+            }
+          }
         }
-
-        .row {
-          display: flex;
-          align-items: center;
-          width: 100%;
-          height: 100%;
-          margin: 0 auto;
-          gap: clamp(0.5rem, 1vw, 2rem);
+        .mainMini {
+          display: none;
+          width: 75%;
         }
       }
     }

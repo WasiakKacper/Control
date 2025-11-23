@@ -1,0 +1,21 @@
+.streakContainer {
+  width: 12rem;
+  height: 12rem;
+  background-color: #d9d9d98f;
+  border: 2px solid var(--white);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  h3 {
+    font-family: "Notable", sans-serif;
+    font-size: 3rem;
+  }
+
+  img {
+    width: auto;
+    height: 7rem;
+  }
+}

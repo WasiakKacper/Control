@@ -3,6 +3,7 @@ import "./scss/About.scss";
 
 /* Import react */
 import { useState } from "react";
+import { Link } from "react-scroll";
 
 /* Motion import */
 import { motion } from "motion/react";
@@ -98,18 +99,20 @@ const About = () => {
             </motion.p>
           ) : null
         )}
-        <motion.a
-          href="#"
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            opacity: { duration: 0.2, delay: 0.1 },
-            y: { type: "spring", bounce: 0, delay: 0.1 },
-          }}
-          viewport={{ once: true }}
-        >
-          Start now
-        </motion.a>
+        <Link to="login" smooth={true} duration={300}>
+          <motion.p
+            className="scrollToLoginBtn"
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              opacity: { duration: 0.2, delay: 0.1 },
+              y: { type: "spring", bounce: 0, delay: 0.1 },
+            }}
+            viewport={{ once: true }}
+          >
+            Start now
+          </motion.p>
+        </Link>
       </div>
     </main>
   );
