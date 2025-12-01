@@ -9,12 +9,16 @@ import type { Task } from "../../Types/Types.tsx";
 type ListProps = {
   tasks: Task[];
   toggleTask: (index: number) => void;
+  newTask: () => void;
 };
 
-const List: React.FC<ListProps> = ({ tasks, toggleTask }) => {
+const List: React.FC<ListProps> = ({ tasks, toggleTask, newTask }) => {
   return (
     <div className="listContainer">
       <h2>List</h2>
+      <button className="newTaskBtn" onClick={newTask}>
+        +
+      </button>
       <ul className="taskContainer">
         {tasks.map((task: Task, index: number) => (
           <li key={index}>

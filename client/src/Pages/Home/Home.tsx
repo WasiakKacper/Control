@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
   const y = useTransform(scrollYProgress, [1, 0], ["-2.5%", "0%"]);
 
   return (
@@ -24,19 +24,19 @@ const Home = () => {
         Gain full control
         <br /> over your process
       </motion.h1>
-      <motion.div
-        className="dashboardWrapper"
-        initial={{ opacity: 0, y: -200, x: 200 }}
-        animate={{ opacity: 1, y: 0, x: 0 }}
-        transition={{
-          duration: 0.8,
-          delay: 0.3,
-          ease: "easeOut",
-        }}
-        style={{ x, y }}
-        viewport={{ once: true }}
-      >
-        <section className="dashboardMini">
+      <div className="dashboardWrapper">
+        <motion.section
+          className="dashboardMini"
+          initial={{ opacity: 0, y: -200, x: 200 }}
+          animate={{ opacity: 1, y: 0, x: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.3,
+            ease: "easeOut",
+          }}
+          style={{ x, y }}
+          viewport={{ once: true }}
+        >
           <div className="headerMini">
             <div className="iconMini">
               <img src="/streak.svg" alt="Control" />
@@ -112,8 +112,8 @@ const Home = () => {
               </section>
             </article>
           </div>
-        </section>
-      </motion.div>
+        </motion.section>
+      </div>
     </main>
   );
 };
