@@ -32,6 +32,10 @@ main {
       width: 80%;
       border: 1px solid #d9d9d9;
 
+      @media only screen and (max-width: 300px) {
+        width: 95 %;
+      }
+
       .headerMini {
         width: 100%;
         padding: clamp(0.1rem, 1vw, 0.8rem);
@@ -59,7 +63,7 @@ main {
           height: auto;
           background-color: #262626;
           display: block;
-          padding: clamp(0.6rem, 2vw, 1rem);
+          padding: clamp(0.1rem, 2vw, 1rem);
 
           .buttonWrapperMini {
             width: 100%;
@@ -77,11 +81,11 @@ main {
               border: 3px solid #fff;
               border-radius: clamp(10px, 1vw, 1rem);
               font-family: "Notable", sans-serif;
-              font-size: clamp(0.3rem, 1vw, 1.3rem);
+              font-size: clamp(2px, 1vw, 1.3rem);
             }
           }
           .listMini {
-            font-size: clamp(0.5rem, 1vw, 1.2rem);
+            font-size: clamp(2px, 1vw, 1.2rem);
             h4 {
               font-weight: 600;
               padding: clamp(0.5rem, 1vw, 1.5rem) 0;
