@@ -11,7 +11,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard.tsx";
 import { Element } from "react-scroll";
 
 const App = () => {
-  return (
+  /*   return (
     <>
       <Header />
       <Element name="home">
@@ -25,8 +25,8 @@ const App = () => {
       </Element>
       <Footer />
     </>
-  );
-  /*   return <Dashboard />; */
+  ); */
+  return <Dashboard />;
 };
 
 export default App;
