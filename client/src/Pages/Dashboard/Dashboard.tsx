@@ -2,7 +2,6 @@
 import "./scss/Dashboard.scss";
 
 /* Import component */
-import Footer from "../../components/Footer/Footer.tsx";
 import Streak from "../../components/Streak/Streak.tsx";
 import Chart from "../../components/Chart/Chart.tsx";
 import List from "../../components/List/List.tsx";
@@ -11,9 +10,23 @@ import List from "../../components/List/List.tsx";
 import { useState, useRef, useEffect } from "react";
 
 /* Import types */
-import type { Task } from "../../Types/Types.tsx";
+import type { Task, Tracker } from "../../Types/Types.tsx";
+import Footer from "../../components/Footer/Footer.tsx";
 
 const Dashboard = () => {
+  /* Add tracker */
+  const [trackers, setTrackers] = useState<Tracker[]>([
+    { name: "Title", isOpen: true },
+  ]);
+
+  const addTracker = () => {
+    setTrackers((prev) => [
+      ...prev,
+      { name: `${"Title " + trackers.length}`, isOpen: true },
+    ]);
+  };
+
+  /* Adding tasks */
   const [tasks, setTasks] = useState<Task[]>([
     { name: "Add first task", isChecked: false },
   ]);
@@ -53,10 +66,21 @@ const Dashboard = () => {
       )
     : 0;
 
-  const [title, setTitle] = useState("Title");
+  /* Change tracker title */
+  const [title, setTitle] = useState<string>(trackers[0].name);
   const [isTitleInputActive, setIsInputTitleActive] = useState(false);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const changeTitle = () => {
+    const activeIndex = trackers.findIndex((t) => t.isOpen);
+
+    setTrackers((prev) =>
+      prev.map((tracker, i) =>
+        i === activeIndex ? { ...tracker, name: title } : tracker
+      )
+    );
+  };
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -95,12 +119,32 @@ const Dashboard = () => {
       <main className="dashboardContainer">
         <aside className="dashboardSidebar">
           <div className="dashboardButtonWrapper">
-            <button className="newTracker">New tracker</button>
+            <button className="newTracker" onClick={addTracker}>
+              New tracker
+            </button>
           </div>
           <article className="dashboardList">
             <h4>My trackers</h4>
             <ul>
-              <li>{title}</li>
+              {trackers.map((tracker, index) => (
+                <li
+                  key={index}
+                  className={tracker.isOpen ? "activeTracker" : ""}
+                  onClick={() => {
+                    setTrackers((prev) =>
+                      prev.map((t, i) =>
+                        i === index
+                          ? { ...t, isOpen: true }
+                          : { ...t, isOpen: false }
+                      )
+                    );
+
+                    setTitle(tracker.name);
+                  }}
+                >
+                  {tracker.name}
+                </li>
+              ))}
             </ul>
           </article>
         </aside>
@@ -109,13 +153,20 @@ const Dashboard = () => {
             <div className="titleWrapper">
               <input
                 type="text"
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
                 value={title}
-                className="title"
+                onChange={(e) => setTitle(e.target.value)}
+                onBlur={() => {
+                  if (title.trim() !== "") changeTitle();
+                  setIsInputTitleActive(false);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    if (title.trim() !== "") changeTitle();
+                    setIsInputTitleActive(false);
+                  }
+                }}
                 ref={inputRef}
-                placeholder="Need's title"
+                className="title"
               />
             </div>
           ) : (
