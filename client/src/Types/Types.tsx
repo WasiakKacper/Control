@@ -3,7 +3,7 @@ export interface Task {
   isChecked: boolean;
 }
 
-export interface Streak {
+export interface StreakType {
   count: number;
   lastActivity: string;
 }
@@ -12,7 +12,7 @@ export interface Tracker {
   name: string;
   isOpen: boolean;
   tasks: Task[];
-  streak: Streak[];
+  streak: StreakType[];
 }
 
 export interface User {

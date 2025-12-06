@@ -23,7 +23,7 @@ const userData = {
       name: "Title",
       isOpen: true,
       tasks: [{ name: "Add first task", isChecked: false }],
-      streak: [{ count: 1, lastActivity: "2025-12-6" }],
+      streak: [{ count: 5, lastActivity: "2025-12-6" }],
     },
   ],
 };
@@ -38,7 +38,7 @@ const Dashboard = () => {
       {
         name: `${"Title" + trackers.length}`,
         isOpen: true,
-        tasks: [{ name: "Add first taskName", isChecked: false }],
+        tasks: [{ name: "Add first task", isChecked: false }],
         streak: [{ count: 1, lastActivity: "2025-12-06" }],
       },
     ]);
@@ -48,6 +48,7 @@ const Dashboard = () => {
 
   /* Adding tasks */
   const tasks = trackers[activeTrackerIndex]?.tasks || [];
+  const streak = trackers[activeTrackerIndex]?.streak || [];
 
   const toggleTask = (index: number) => {
     setTrackers((prev) =>
@@ -224,7 +225,10 @@ const Dashboard = () => {
               <Chart value={completedPercentage} />
             </div>
             <div className="row">
-              <Streak />
+              <Streak
+                count={streak[0].count}
+                lastActivity={streak[0].lastActivity}
+              />
               <Calendar />
             </div>
           </article>
