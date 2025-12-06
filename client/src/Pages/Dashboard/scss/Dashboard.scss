@@ -121,6 +121,19 @@
         padding-top: 1rem;
         font-weight: 600;
       }
+      ul {
+        padding: 1rem 0 0 0;
+        width: 100%;
+        li {
+          width: 100%;
+          cursor: pointer;
+          padding-left: 1rem;
+          transition: 300ms ease;
+          &:hover {
+            background-color: #1c1c1c;
+          }
+        }
+      }
     }
   }
 

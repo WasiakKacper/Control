@@ -1,0 +1,56 @@
+.calendarContainer {
+  width: 60%;
+  height: 12rem;
+  background-color: #d9d9d98f;
+  border: 2px solid var(--white);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 2rem 0rem 2rem;
+  position: relative;
+
+  @media only screen and (max-width: 768px) {
+    width: 90%;
+  }
+
+  .monthsContainer {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+
+    .monthContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      h4 {
+        font-family: "Notable", sans-serif;
+      }
+
+      .daysNames {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.5rem;
+        font-size: 0.8rem;
+      }
+
+      .daysGrid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.5rem;
+
+        .day {
+          width: 0.9rem;
+          height: 0.9rem;
+          background-color: #d9d9d98f;
+          border: 2px solid var(--white);
+          border-radius: 1rem;
+
+          &.checked {
+            background-color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

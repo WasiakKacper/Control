@@ -5,36 +5,61 @@ import "./scss/Dashboard.scss";
 import Streak from "../../components/Streak/Streak.tsx";
 import Chart from "../../components/Chart/Chart.tsx";
 import List from "../../components/List/List.tsx";
+import Calendar from "../../components/Calendar/Calendar.tsx";
 
 /* Import react */
 import { useState, useRef, useEffect } from "react";
 
 /* Import types */
-import type { Task, Tracker } from "../../Types/Types.tsx";
+import type { Tracker } from "../../Types/Types.tsx";
 import Footer from "../../components/Footer/Footer.tsx";
+
+/* User data */
+const userData = {
+  name: "Test",
+  avatar: "Url",
+  trackers: [
+    {
+      name: "Title",
+      isOpen: true,
+      tasks: [{ name: "Add first task", isChecked: false }],
+      streak: [{ count: 1, lastActivity: "2025-12-6" }],
+    },
+  ],
+};
 
 const Dashboard = () => {
   /* Add tracker */
-  const [trackers, setTrackers] = useState<Tracker[]>([
-    { name: "Title", isOpen: true },
-  ]);
+  const [trackers, setTrackers] = useState<Tracker[]>(userData.trackers);
 
   const addTracker = () => {
     setTrackers((prev) => [
       ...prev,
-      { name: `${"Title " + trackers.length}`, isOpen: true },
+      {
+        name: `${"Title" + trackers.length}`,
+        isOpen: true,
+        tasks: [{ name: "Add first taskName", isChecked: false }],
+        streak: [{ count: 1, lastActivity: "2025-12-06" }],
+      },
     ]);
   };
 
+  const activeTrackerIndex = trackers.findIndex((t) => t.isOpen);
+
   /* Adding tasks */
-  const [tasks, setTasks] = useState<Task[]>([
-    { name: "Add first task", isChecked: false },
-  ]);
+  const tasks = trackers[activeTrackerIndex]?.tasks || [];
 
   const toggleTask = (index: number) => {
-    setTasks((prev) =>
-      prev.map((task, i) =>
-        i === index ? { ...task, isChecked: !task.isChecked } : task
+    setTrackers((prev) =>
+      prev.map((tracker, tIndex) =>
+        tIndex === activeTrackerIndex
+          ? {
+              ...tracker,
+              tasks: tracker.tasks.map((task, i) =>
+                i === index ? { ...task, isChecked: !task.isChecked } : task
+              ),
+            }
+          : tracker
       )
     );
   };
@@ -48,16 +73,25 @@ const Dashboard = () => {
   };
 
   const newTask = () => {
-    if (taskName == "") setError(true);
-    else {
-      setTasks((prevTasks) => [
-        ...prevTasks,
-        { name: taskName, isChecked: false },
-      ]);
-      setTaskName("");
-      setIsModalActive(false);
-      setError(false);
+    if (taskName.trim() === "") {
+      setError(true);
+      return;
     }
+
+    setTrackers((prev) =>
+      prev.map((tracker, tIndex) =>
+        tIndex === activeTrackerIndex
+          ? {
+              ...tracker,
+              tasks: [...tracker.tasks, { name: taskName, isChecked: false }],
+            }
+          : tracker
+      )
+    );
+
+    setTaskName("");
+    setIsModalActive(false);
+    setError(false);
   };
 
   const completedPercentage = tasks.length
@@ -73,11 +107,9 @@ const Dashboard = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const changeTitle = () => {
-    const activeIndex = trackers.findIndex((t) => t.isOpen);
-
     setTrackers((prev) =>
       prev.map((tracker, i) =>
-        i === activeIndex ? { ...tracker, name: title } : tracker
+        i === activeTrackerIndex ? { ...tracker, name: title } : tracker
       )
     );
   };
@@ -193,11 +225,7 @@ const Dashboard = () => {
             </div>
             <div className="row">
               <Streak />
-              <List
-                tasks={tasks}
-                toggleTask={toggleTask}
-                newTask={activeModal}
-              />
+              <Calendar />
             </div>
           </article>
         </section>
