@@ -1,16 +1,10 @@
-/* Import css */
 import "./scss/Home.scss";
-
-/* Import motion */
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
+import MiniDashbord from "./MiniDashbord";
 
 const Home = () => {
-  const { scrollYProgress } = useScroll();
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
-  const y = useTransform(scrollYProgress, [1, 0], ["-2.5%", "0%"]);
-
   return (
-    <main>
+    <main className="homeWrapper">
       <motion.h1
         className="homeHeader"
         initial={{ opacity: 0, y: 100 }}
@@ -25,94 +19,7 @@ const Home = () => {
         <br /> over your process
       </motion.h1>
       <div className="dashboardWrapper">
-        <motion.section
-          className="dashboardMini"
-          initial={{ opacity: 0, y: -200, x: 200 }}
-          animate={{ opacity: 1, y: 0, x: 0 }}
-          transition={{
-            duration: 0.5,
-            delay: 0.3,
-            ease: "easeOut",
-          }}
-          style={{ x, y }}
-          viewport={{ once: true }}
-        >
-          <div className="headerMini">
-            <div className="iconMini">
-              <img src="/streak.svg" alt="Control" />
-            </div>
-            <div className="avatarMini"></div>
-          </div>
-          <div className="wrapperMini">
-            <aside className="sidebarMini">
-              <div className="buttonWrapperMini">
-                <button>New tracker</button>
-              </div>
-              <div className="listMini">
-                <h4>My trackers</h4>
-                <p>Title</p>
-              </div>
-            </aside>
-            <article className="mainMini">
-              <header>
-                <h3>Title</h3>
-              </header>
-              <section className="row">
-                <motion.div
-                  className="rectangle"
-                  initial={{ opacity: 0, y: -200, x: 200 }}
-                  animate={{ opacity: 1, y: 0, x: 0 }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.3,
-                    ease: "easeOut",
-                  }}
-                >
-                  <img src="/listDashboard.png" alt="" />
-                </motion.div>
-                <motion.div
-                  className="square"
-                  initial={{ opacity: 0, y: -200, x: 200 }}
-                  animate={{ opacity: 1, y: 0, x: 0 }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.4,
-                    ease: "easeOut",
-                  }}
-                >
-                  <img src="/chartDashboard.png" alt="" />
-                </motion.div>
-              </section>
-
-              <section className="row">
-                <motion.div
-                  className="square"
-                  initial={{ opacity: 0, y: -200, x: 200 }}
-                  animate={{ opacity: 1, y: 0, x: 0 }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.5,
-                    ease: "easeOut",
-                  }}
-                >
-                  <img src="/streakDashboard.png" alt="" />
-                </motion.div>
-                <motion.div
-                  className="rectangle"
-                  initial={{ opacity: 0, y: -200, x: 200 }}
-                  animate={{ opacity: 1, y: 0, x: 0 }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.6,
-                    ease: "easeOut",
-                  }}
-                >
-                  <img src="/calendaryDashboard.png" alt="" />
-                </motion.div>
-              </section>
-            </article>
-          </div>
-        </motion.section>
+        <MiniDashbord />
       </div>
     </main>
   );
