@@ -1,17 +1,26 @@
-/* Import scss */
 import "./scss/RegisterWindow.scss";
-
-/* Motion import */
 import { motion } from "motion/react";
+import { useState } from "react";
 
-/* Props types */
-interface RegisterWindowProps {
+type RegisterWindowProps = {
   setLoginOrRegister: (value: string) => void;
-}
+};
 
 const RegisterWindow: React.FC<RegisterWindowProps> = ({
   setLoginOrRegister,
 }) => {
+  const [alert, setAlert] = useState<string>("");
+  const [isLogged, setIsLogged] = useState<boolean>(false);
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordAgain, setPaswordAgain] = useState<string>("");
+  /* 
+  const validateRegister = (e) => {
+    e.preventDefault();
+    if(password != "" && email != "" && passwordAgain)
+  }; */
+
   return (
     <motion.article
       className="LoginBox"
@@ -25,10 +34,23 @@ const RegisterWindow: React.FC<RegisterWindowProps> = ({
       viewport={{ once: true }}
     >
       <h4 className="loginHeader">Register</h4>
-      <form action="">
-        <input type="email" placeholder="E-mail" />
-        <input type="password" placeholder="Password" />
-        <input type="password" placeholder="Password again  " />
+      <form action="" onSubmit={validateRegister}>
+        <input
+          type="email"
+          placeholder="E-mail"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password again"
+          /* onChange={(e) => setPasswordAgain(e.target.value)} */
+        />
+        <span>{alert}</span>
         <button>Sign up</button>
       </form>
       <p>

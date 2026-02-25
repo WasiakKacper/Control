@@ -20,20 +20,23 @@ const LoginWindow: React.FC<LoginWindowProps> = ({ setLoginOrRegister }) => {
   const correctEmail = "test@example.com";
   const correctPassword = "123";
 
+  const [alert, setAlert] = useState<string>("");
+  const [isLogged, setIsLogged] = useState<boolean>(false);
+
   const validateLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (password != "" && email != "") {
       if (emailRegex.test(email)) {
         if (email === correctEmail && password === correctPassword) {
-          console.log("zalogoawny");
+          setIsLogged(true);
         } else {
-          console.log("niepoprawny email lub haslo");
+          setAlert("niepoprawny email lub haslo");
         }
       } else {
-        console.log("Niepoprawna struktura email");
+        setAlert("Niepoprawna struktura email");
       }
     } else {
-      console.log("Pola nie mogą zostać puste");
+      setAlert("Pola nie mogą zostać puste");
     }
   };
   return (
@@ -62,6 +65,9 @@ const LoginWindow: React.FC<LoginWindowProps> = ({ setLoginOrRegister }) => {
           required
           onChange={(e) => setPassword(e.target.value)}
         />
+
+        <span>{alert}</span>
+
         <button onClick={validateLogin}>Sign in</button>
       </form>
       <p>

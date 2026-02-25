@@ -24,6 +24,14 @@ const userData = {
       isOpen: true,
       tasks: [{ name: "Add first task", isChecked: false }],
       streak: [{ count: 5, lastActivity: "2025-12-6" }],
+      calendar: [
+        {
+          2025: {
+            10: [1, 5, 10],
+            11: [25, 31],
+          },
+        },
+      ],
     },
   ],
 };
@@ -40,6 +48,7 @@ const Dashboard = () => {
         isOpen: true,
         tasks: [{ name: "Add first task", isChecked: false }],
         streak: [{ count: 1, lastActivity: "2025-12-06" }],
+        calendar: [{}],
       },
     ]);
   };

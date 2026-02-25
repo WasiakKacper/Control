@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 /* Import scss */
 import "./scss/Calendar.scss";
 
+/* Import type */
+import type { MonthProps, VisitedDays } from "../../Types/Types.tsx";
+
 const months = [
   "January",
   "February",
@@ -20,28 +23,9 @@ const months = [
 
 const daysNames = ["M", "T", "W", "T", "F", "S", "S"];
 
-interface VisitedDays {
-  [year: number]: {
-    [month: number]: number[];
-  };
-}
-
 const daysInMonth = (month: number, year: number) => {
   return new Date(year, month + 1, 0).getDate();
 };
-
-/* MonthProps */
-interface MonthProps {
-  month: number;
-  year: number;
-  visitedDays?: number[];
-}
-
-interface MonthProps {
-  month: number;
-  year: number;
-  visitedDays?: number[]; // np. [1, 3, 5]
-}
 
 const Month: React.FC<MonthProps> = ({ month, year, visitedDays = [] }) => {
   const days = daysInMonth(month, year);
