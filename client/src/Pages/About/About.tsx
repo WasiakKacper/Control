@@ -1,52 +1,35 @@
-/* Import css */
 import "./scss/About.scss";
-
-/* Import react */
 import { useState } from "react";
 import { Link } from "react-scroll";
-
-/* Motion import */
 import { motion } from "motion/react";
+import { cardsContent } from "./CardsData";
+import AboutCard from "./AboutCard";
 
 const About = () => {
-  const [whatIndex, setWhatIndex] = useState<number | null>(0);
+  const [whatIndex, setWhatIndex] = useState<number>(0);
 
-  const cardsContent = [
-    {
-      img: "./chart.svg",
-      title: "Charts",
-    },
-    {
-      img: "./streak.svg",
-      title: "Streak",
-    },
-    {
-      img: "./cup.svg",
-      title: "Achievements",
-    },
-  ];
+  const handleClick = (clickedIndex: number) => {
+    setWhatIndex(clickedIndex);
+  };
 
-  const cardsText = [
-    {
-      index: 0,
-      text: "Track your progress over time with clear charts and statistics",
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: 100,
     },
-    {
-      index: 1,
-      text: "Stay motivated by building daily habits and keeping your streaks alive.",
+    visible: {
+      opacity: 1,
+      y: 0,
     },
-    {
-      index: 2,
-      text: "Celebrate your milestones and unlock achievements as you reach your goals.",
-    },
-  ];
+  };
 
   return (
     <main className="aboutConteiner">
       <motion.h2
         className="aboutHeader"
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        variants={variants}
+        initial="hidden"
+        whileInView="visible"
         transition={{
           opacity: { duration: 0.4, delay: 0.3 },
           y: { type: "spring", bounce: 0.1, delay: 0.3 },
@@ -59,61 +42,48 @@ const About = () => {
 
       <section className="aboutWrapper">
         {cardsContent.map((card, index) => (
-          <motion.article
+          <AboutCard
             key={index}
-            className={`aboutCard ${whatIndex === index ? "active" : ""}`}
-            onClick={() => setWhatIndex(index)}
-            initial={{ opacity: 0, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              opacity: { duration: 0.2, delay: index * 0.1 },
-              y: { type: "spring", bounce: 1, delay: index * 0.1 },
-            }}
-            viewport={{ once: true }}
-            whileHover={{
-              y: -20,
-              transition: { duration: 0.2, ease: "easeOut" },
-              border: "1px solid #d9d9d9",
-            }}
-          >
-            <img src={card.img} alt={card.title} className="icon" />
-            <h3 className="cardTitle">{card.title}</h3>
-          </motion.article>
+            content={card}
+            click={() => handleClick(card.index)}
+            index={whatIndex}
+          />
         ))}
       </section>
 
-      <div className="informationWrapper">
-        {cardsText.map((card) =>
+      <article className="informationWrapper">
+        {cardsContent.map((card) =>
           whatIndex === card.index ? (
             <motion.p
               key={card.index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
-                opacity: { duration: 0.2, delay: 0.1 },
-                y: { type: "spring", bounce: 0, delay: 0.1 },
+                duration: 0.2,
+                delay: 0.1,
               }}
               viewport={{ once: true }}
             >
               {card.text}
             </motion.p>
-          ) : null
+          ) : null,
         )}
         <Link to="login" smooth={true} duration={300}>
           <motion.p
             className="scrollToLoginBtn"
-            initial={{ opacity: 0, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={variants}
+            initial="hidden"
+            whileInView="visible"
             transition={{
               opacity: { duration: 0.2, delay: 0.1 },
-              y: { type: "spring", bounce: 0, delay: 0.1 },
+              y: { delay: 0.1 },
             }}
             viewport={{ once: true }}
           >
             Start now
           </motion.p>
         </Link>
-      </div>
+      </article>
     </main>
   );
 };

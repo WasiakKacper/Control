@@ -5,7 +5,7 @@
   .aboutHeader {
     font-size: clamp(1rem, 2vw, 2rem);
     font-family: "Notable", sans-serif;
-    padding: clamp(2rem, 1vw, 5rem);
+    padding: clamp(2rem, 3vw, 5rem);
     background: linear-gradient(to bottom, #333, #222);
   }
 
@@ -18,10 +18,10 @@
     overflow-x: auto;
     gap: clamp(2rem, 2vw, 4rem);
 
-    -ms-overflow-style: none; // IE 10+
-    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     &::-webkit-scrollbar {
-      display: none; // Chrome, Safari
+      display: none;
     }
 
     .aboutCard {
@@ -62,7 +62,7 @@
   .informationWrapper {
     display: flex;
     flex-direction: column;
-    padding: clamp(1rem, 1vw, 5rem);
+    padding: clamp(1rem, 2vw, 5rem);
     width: 100%;
     max-width: 600px;
     font-size: clamp(1rem, 1vw, 1.2rem);

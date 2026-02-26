@@ -1,3 +1,10 @@
+export type cardType = {
+  index: number;
+  text: string;
+  img: string;
+  title: string;
+};
+
 export interface Task {
   name: string;
   isChecked: boolean;
