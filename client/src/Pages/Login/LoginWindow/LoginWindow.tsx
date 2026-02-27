@@ -1,27 +1,23 @@
-/* Import scss */
 import "./scss/LoginWindow.scss";
-
-/* Motion import */
 import { motion } from "motion/react";
-
-/* Import react */
 import { useState } from "react";
 
-/* Props types */
-interface LoginWindowProps {
-  setLoginOrRegister: (value: string) => void;
-}
+type LoginWindowProps = {
+  click: () => void;
+};
 
-const LoginWindow: React.FC<LoginWindowProps> = ({ setLoginOrRegister }) => {
+const LoginWindow: React.FC<LoginWindowProps> = ({ click }) => {
+  const correctEmail = "test@example.com";
+  const correctPassword = "123";
+
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const correctEmail = "test@example.com";
-  const correctPassword = "123";
-
   const [alert, setAlert] = useState<string>("");
   const [isLogged, setIsLogged] = useState<boolean>(false);
+
+  console.log(isLogged);
 
   const validateLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -30,15 +26,16 @@ const LoginWindow: React.FC<LoginWindowProps> = ({ setLoginOrRegister }) => {
         if (email === correctEmail && password === correctPassword) {
           setIsLogged(true);
         } else {
-          setAlert("niepoprawny email lub haslo");
+          setAlert("Incorrect email or password!");
         }
       } else {
-        setAlert("Niepoprawna struktura email");
+        setAlert("Incorrect email structure!");
       }
     } else {
-      setAlert("Pola nie mogą zostać puste");
+      setAlert("Fields cannot be empty!");
     }
   };
+
   return (
     <motion.article
       className="loginBox"
@@ -71,10 +68,7 @@ const LoginWindow: React.FC<LoginWindowProps> = ({ setLoginOrRegister }) => {
         <button onClick={validateLogin}>Sign in</button>
       </form>
       <p>
-        No account yet?{" "}
-        <span onClick={() => setLoginOrRegister("register")}>
-          Create one now!
-        </span>
+        No account yet? <span onClick={click}>Create one now!</span>
       </p>
     </motion.article>
   );

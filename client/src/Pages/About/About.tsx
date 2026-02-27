@@ -80,7 +80,7 @@ const About = () => {
             }}
             viewport={{ once: true }}
           >
-            Start now
+            Try the demo version of the app!
           </motion.p>
         </Link>
       </article>

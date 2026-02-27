@@ -3,23 +3,34 @@ import { motion } from "motion/react";
 import { useState } from "react";
 
 type RegisterWindowProps = {
-  setLoginOrRegister: (value: string) => void;
+  click: () => void;
 };
 
-const RegisterWindow: React.FC<RegisterWindowProps> = ({
-  setLoginOrRegister,
-}) => {
+const RegisterWindow: React.FC<RegisterWindowProps> = ({ click }) => {
   const [alert, setAlert] = useState<string>("");
   const [isLogged, setIsLogged] = useState<boolean>(false);
+  console.log(isLogged);
 
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordAgain, setPaswordAgain] = useState<string>("");
-  /* 
-  const validateRegister = (e) => {
+
+  const validateRegister = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if(password != "" && email != "" && passwordAgain)
-  }; */
+    if (password != "" && email != "" && passwordAgain != "") {
+      if (emailRegex.test(email)) {
+        if (password === passwordAgain) setIsLogged(true);
+        else {
+          setAlert("The passwords are not the same!");
+        }
+      } else {
+        setAlert("Incorrect email structure!");
+      }
+    } else {
+      setAlert("Fields cannot be empty!");
+    }
+  };
 
   return (
     <motion.article
@@ -48,14 +59,13 @@ const RegisterWindow: React.FC<RegisterWindowProps> = ({
         <input
           type="password"
           placeholder="Password again"
-          /* onChange={(e) => setPasswordAgain(e.target.value)} */
+          onChange={(e) => setPaswordAgain(e.target.value)}
         />
         <span>{alert}</span>
         <button>Sign up</button>
       </form>
       <p>
-        Already have an account?{" "}
-        <span onClick={() => setLoginOrRegister("login")}>Log in here!</span>
+        Already have an account? <span onClick={click}>Log in here!</span>
       </p>
     </motion.article>
   );
