@@ -1,6 +1,7 @@
 import "./scss/LoginWindow.scss";
 import { motion } from "motion/react";
 import { useState } from "react";
+import Button from "../../../components/Ui/Button/Button.tsx";
 
 type LoginWindowProps = {
   click: () => void;
@@ -62,10 +63,8 @@ const LoginWindow: React.FC<LoginWindowProps> = ({ click }) => {
           required
           onChange={(e) => setPassword(e.target.value)}
         />
-
         <span>{alert}</span>
-
-        <button onClick={validateLogin}>Sign in</button>
+        <Button theme="light" click={() => validateLogin} name="Sign in" />
       </form>
       <p>
         No account yet? <span onClick={click}>Create one now!</span>

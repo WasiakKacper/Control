@@ -1,6 +1,7 @@
 import "./scss/RegisterWindow.scss";
 import { motion } from "motion/react";
 import { useState } from "react";
+import Button from "../../../components/Ui/Button/Button";
 
 type RegisterWindowProps = {
   click: () => void;
@@ -62,7 +63,11 @@ const RegisterWindow: React.FC<RegisterWindowProps> = ({ click }) => {
           onChange={(e) => setPaswordAgain(e.target.value)}
         />
         <span>{alert}</span>
-        <button>Sign up</button>
+        <Button
+          theme="light"
+          click={() => console.log("test")}
+          name="Sign up"
+        />
       </form>
       <p>
         Already have an account? <span onClick={click}>Log in here!</span>

@@ -46,25 +46,6 @@
       height: clamp(0.5rem, 1vw, 2rem);
       font-size: clamp(0.5rem, 2vw, 1.5rem);
     }
-
-    button {
-      width: 80%;
-      padding: 0.7rem;
-      background-color: #fff;
-      font-family: "Notable", sans-serif;
-      font-size: 1.1rem;
-      color: #222;
-      border-radius: 1rem;
-      margin: 2rem 0;
-      transition: background 300ms ease;
-      border: 1px solid #fff;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #222;
-        color: #fff;
-      }
-    }
   }
 
   p {

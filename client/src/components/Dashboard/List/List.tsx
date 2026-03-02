@@ -4,7 +4,7 @@ import "./scss/List.scss";
 /* Import ract */
 import React from "react";
 
-import type { Task } from "../../Types/Types.tsx";
+import type { Task } from "../../../Types/Types.tsx";
 
 type ListProps = {
   tasks: Task[];

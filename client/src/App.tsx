@@ -1,17 +1,13 @@
-/* Import pages and components */
-import Header from "./components/Header/Header.tsx";
+import Header from "./components/Ui/Header/Header.tsx";
 import Home from "./Pages/Home/Home.tsx";
 import About from "./Pages/About/About.tsx";
 import Login from "./Pages/Login/Login.tsx";
-import Footer from "./components/Footer/Footer.tsx";
-/* Dashboard */
+import Footer from "./components/Ui/Footer/Footer.tsx";
 import Dashboard from "./Pages/Dashboard/Dashboard.tsx";
-
-/* Import react-store */
 import { Element } from "react-scroll";
 
 const App = () => {
-  return (
+  /*   return (
     <>
       <Header />
       <Element name="home">
@@ -25,8 +21,8 @@ const App = () => {
       </Element>
       <Footer />
     </>
-  );
-  /*   return <Dashboard />; */
+  ); */
+  return <Dashboard />;
 };
 
 export default App;
