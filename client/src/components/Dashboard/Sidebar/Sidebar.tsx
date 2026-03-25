@@ -6,9 +6,15 @@ type SidebarTypes = {
   trackers: trackerType[];
   add: () => void;
   remove: (idToRemove: number) => void;
+  onSelect: (trackerId: number) => void;
 };
 
-const Sidebar: React.FC<SidebarTypes> = ({ trackers, add, remove }) => {
+const Sidebar: React.FC<SidebarTypes> = ({
+  trackers,
+  add,
+  remove,
+  onSelect,
+}) => {
   return (
     <aside className="dashboardSidebar">
       <div className="buttonWrapper">
@@ -18,9 +24,15 @@ const Sidebar: React.FC<SidebarTypes> = ({ trackers, add, remove }) => {
       <h4>Trackers</h4>
       <ul>
         {trackers.map((tracker) => (
-          <li>
+          <li onClick={() => onSelect(tracker.id)}>
             {tracker.name}{" "}
-            <span onClick={() => remove(tracker.id)} className="delete">
+            <span
+              onClick={(e) => {
+                e.stopPropagation();
+                remove(tracker.id);
+              }}
+              className="delete"
+            >
               delete
             </span>
           </li>

@@ -2,10 +2,7 @@ import "./scss/Dashboard.scss";
 import type { trackerType } from "../../Types/Types.tsx";
 import DashboardHeader from "../../components/Dashboard/DashboardHeader/DashboardHeader.tsx";
 import Sidebar from "../../components/Dashboard/Sidebar/Sidebar.tsx";
-/* import Streak from "../../components/Dashboard/Streak/Streak.tsx";
-import List from "../../components/Dashboard/List/List.tsx";
-import Chart from "../../components/Dashboard/Chart/Chart.tsx";
-import Calendar from "../../components/Dashboard/Calendar/Calendar.tsx"; */
+import Hero from "../../components/Dashboard/Hero/Hero.tsx";
 import { useState } from "react";
 
 const Dashboard = () => {
@@ -13,8 +10,11 @@ const Dashboard = () => {
     { id: Date.now(), name: "Tracker" },
   ]);
 
+  const [selectedId, setSelectedId] = useState(trackers[0]?.id);
+  const currentTracker = trackers.find((t => t.id === selectedId))
+
   const handleAdd = () => {
-    const newTracker = { id: Date.now(), name: "Tracker" + trackers.length };
+    const newTracker = { id: Date.now(), name: trackers.length != 0 ? "Tracker" + trackers.length : "Tracker"};
     setTrackers([...trackers, newTracker]);
   };
 
@@ -24,13 +24,23 @@ const Dashboard = () => {
     );
   };
 
+  const updateTrackerName  = (newName: string) => {
+    setTrackers(prevTrackers => prevTrackers.map(tracker => tracker.id === selectedId ? { ...tracker, name: newName } : tracker))
+  }
+
   return (
     <main className="dashboardContainer">
       <DashboardHeader />
       <section className="dashboardWrapper">
-        <Sidebar trackers={trackers} add={handleAdd} remove={handleRemove} />
-        <article className="dashboardContent"></article>
+        <Sidebar
+          trackers={trackers}
+          add={handleAdd}
+          remove={handleRemove}
+          onSelect={setSelectedId}
+        />
+        <Hero tracker={currentTracker} onUpdateName={updateTrackerName}/>
       </section>
+      
     </main>
   );
 };
