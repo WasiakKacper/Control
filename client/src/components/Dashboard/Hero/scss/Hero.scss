@@ -3,10 +3,19 @@
   height: 100%;
   padding: 1rem;
   display: flex;
-  justify-content: end;
+  flex-direction: column;
 
-  h3,
-  input {
-    width: 100%;
+  .heroHeader{
+      width: 100%;
+      display: flex;
+      justify-content: end;
+      font-size: 1.2rem;
   }
+
+  .heroRow{
+    width: 100%;
+    display: flex;
+    justify-items: center;
+  }
+ 
 }

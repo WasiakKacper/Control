@@ -8,4 +8,9 @@ export type cardType = {
 export type trackerType = {
   id: number;
   name: string;
+  tasks: {
+    id: number;
+    name: string;
+    isComplete: boolean;
+  }[];
 };
