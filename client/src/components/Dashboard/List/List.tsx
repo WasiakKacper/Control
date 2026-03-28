@@ -3,7 +3,7 @@ import { useTrackerContext } from "../../../hooks/useTrackerContext";
 import { useCurrentTracker } from "../../../hooks/useCurrentTracker";
 
 const List = () => {
-  const { handleAddTask } = useTrackerContext();
+  const { handleAddTask, handleToogleTask } = useTrackerContext();
   const currentTracker = useCurrentTracker();
 
   return (
@@ -15,7 +15,12 @@ const List = () => {
       <ul className="taskContainer">
         {currentTracker?.tasks.map((task) => (
           <li key={task.id}>
-            {task.name} <input type="checkbox" checked={task.isComplete} />
+            {task.name}{" "}
+            <input
+              type="checkbox"
+              onChange={() => handleToogleTask(task.id)}
+              checked={task.isComplete}
+            />
           </li>
         ))}
       </ul>

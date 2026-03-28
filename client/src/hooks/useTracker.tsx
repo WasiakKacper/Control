@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import type { trackerType } from "../Types/Types";
 
 export function useTracker() {
@@ -14,6 +14,7 @@ export function useTracker() {
     trackers[0]?.id,
   );
 
+  //Group of function for operations on trackers
   const handleAdd = () => {
     const newTracker = {
       id: Date.now(),
@@ -37,6 +38,7 @@ export function useTracker() {
     );
   };
 
+  //Group of function for operations on tasks
   const handleAddTask = (taskName: string) => {
     setTrackers((prevTrackers) =>
       prevTrackers.map((tracker) =>
@@ -53,6 +55,37 @@ export function useTracker() {
     );
   };
 
+  const handleToogleTask = (taskId: number) => {
+    setTrackers((prevTrackers) =>
+      prevTrackers.map((tracker) =>
+        tracker.id === selectedId
+          ? {
+              ...tracker,
+              tasks: tracker.tasks.map((task) =>
+                task.id === taskId
+                  ? { ...task, isComplete: !task.isComplete }
+                  : task,
+              ),
+            }
+          : tracker,
+      ),
+    );
+    console.log(trackers);
+  };
+
+  const { completionPercentage } = useMemo(() => {
+    const currentTracker = trackers.find((t) => t.id === selectedId);
+
+    if (!currentTracker || currentTracker.tasks.length === 0)
+      return { completionPercentage: 0 };
+
+    const total = currentTracker.tasks.length;
+    const completed = currentTracker.tasks.filter((t) => t.isComplete).length;
+    const percentage = Math.round((completed / total) * 100);
+
+    return { completionPercentage: percentage };
+  }, [trackers, selectedId]);
+
   return {
     trackers,
     updateTrackerName,
@@ -61,5 +94,7 @@ export function useTracker() {
     selectedId,
     setSelectedId,
     handleAddTask,
+    handleToogleTask,
+    completionPercentage,
   };
 }

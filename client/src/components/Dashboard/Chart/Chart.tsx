@@ -1,8 +1,7 @@
-/* Import scss */
 import "./scss/Chart.scss";
+import { useTrackerContext } from "../../../hooks/useTrackerContext";
 
 type ChartProps = {
-  value: number;
   size?: number;
   strokeWidth?: number;
   color?: string;
@@ -10,15 +9,16 @@ type ChartProps = {
 };
 
 const Chart: React.FC<ChartProps> = ({
-  value,
   size = 140,
   strokeWidth = 10,
   color = "#fff",
   bgColor = "#B9B9B9",
 }) => {
+  const { completionPercentage } = useTrackerContext();
+
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
-  const progress = (value / 100) * circumference;
+  const progress = (completionPercentage / 100) * circumference;
 
   return (
     <div className="chartContainer">
@@ -46,7 +46,7 @@ const Chart: React.FC<ChartProps> = ({
       </svg>
 
       {/* procent w środku */}
-      <div className="value">{value}%</div>
+      <div className="value">{completionPercentage}%</div>
     </div>
   );
 };

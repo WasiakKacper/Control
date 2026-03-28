@@ -1,6 +1,7 @@
 import "./scss/Hero.scss";
 import { useState } from "react";
 import List from "../List/List";
+import Chart from "../Chart/Chart";
 import { useTrackerContext } from "../../../hooks/useTrackerContext";
 import { useCurrentTracker } from "../../../hooks/useCurrentTracker";
 
@@ -53,6 +54,7 @@ const Hero = () => {
       </div>
       <div className="heroRow">
         <List />
+        <Chart />
       </div>
     </section>
   );

@@ -9,6 +9,8 @@ interface TrackerContextType {
   selectedId: number | undefined;
   setSelectedId: React.Dispatch<React.SetStateAction<number | undefined>>;
   handleAddTask: (taskName: string) => void;
+  handleToogleTask: (taskId: number) => void;
+  completionPercentage: number;
 }
 
 export const TrackerContext = createContext<TrackerContextType | undefined>(
