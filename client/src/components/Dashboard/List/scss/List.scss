@@ -57,6 +57,7 @@ ul {
   li {
     width: 100%;
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
     font-size: clamp(0.8rem, 1vw, 1.4rem);
 

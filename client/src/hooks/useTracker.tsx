@@ -40,19 +40,21 @@ export function useTracker() {
 
   //Group of function for operations on tasks
   const handleAddTask = (taskName: string) => {
-    setTrackers((prevTrackers) =>
-      prevTrackers.map((tracker) =>
-        tracker.id === selectedId
-          ? {
-              ...tracker,
-              tasks: [
-                ...tracker.tasks,
-                { id: Date.now(), name: taskName, isComplete: false },
-              ],
-            }
-          : tracker,
-      ),
-    );
+    if (taskName !== "") {
+      setTrackers((prevTrackers) =>
+        prevTrackers.map((tracker) =>
+          tracker.id === selectedId
+            ? {
+                ...tracker,
+                tasks: [
+                  ...tracker.tasks,
+                  { id: Date.now(), name: taskName, isComplete: false },
+                ],
+              }
+            : tracker,
+        ),
+      );
+    }
   };
 
   const handleToogleTask = (taskId: number) => {
@@ -70,7 +72,6 @@ export function useTracker() {
           : tracker,
       ),
     );
-    console.log(trackers);
   };
 
   const { completionPercentage } = useMemo(() => {
