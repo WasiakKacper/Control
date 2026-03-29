@@ -10,6 +10,7 @@ interface TrackerContextType {
   setSelectedId: React.Dispatch<React.SetStateAction<number | undefined>>;
   handleAddTask: (taskName: string) => void;
   handleToogleTask: (taskId: number) => void;
+  handleRemoveTask: (idToRemove: number) => void;
   completionPercentage: number;
 }
 

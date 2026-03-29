@@ -31,7 +31,8 @@ h2 {
     scale: 1.1;
   }
 }
-ul {
+
+.taskContainer {
   padding: 1rem;
   overflow-y: auto;
   &::-webkit-scrollbar {
@@ -54,59 +55,27 @@ ul {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.7) transparent;
 
-  li {
+  .task {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    text-align: center;
+    align-items: center;
     font-size: clamp(0.8rem, 1vw, 1.4rem);
 
-    .custom-checkbox {
-      display: inline-flex;
+    .taskControls {
+      width: 15%;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      user-select: none;
-      position: relative;
 
-      input {
-        position: absolute;
-        opacity: 0;
-        pointer-events: none;
-      }
+      .taskDelete {
+        cursor: pointer;
+        transition: ease 300ms;
 
-      .box {
-        width: 20px;
-        height: 20px;
-        border: 2px solid #b5b5b5;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease;
-      }
-
-      /* tu powstaje ptaszek (SVG w tle) */
-      .box::after {
-        content: "";
-        width: 14px;
-        height: 14px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 14px;
-        opacity: 0;
-        transition: opacity 0.2s ease;
-      }
-
-      input:checked + .box {
-        background-color: #d9d9d98f;
-        border-color: var(--white);
-      }
-
-      input:checked + .box::after {
-        opacity: 1;
-        background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'><polyline points='20 6 9 17 4 12'/></svg>");
+        &:hover {
+          color: #faadad;
+        }
       }
     }
   }

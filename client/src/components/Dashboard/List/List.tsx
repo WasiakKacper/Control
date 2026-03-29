@@ -5,7 +5,7 @@ import { useCurrentTracker } from "../../../hooks/useCurrentTracker";
 import { useState } from "react";
 
 const List = () => {
-  const { handleToogleTask } = useTrackerContext();
+  const { handleToogleTask, handleRemoveTask } = useTrackerContext();
   const currentTracker = useCurrentTracker();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -18,13 +18,22 @@ const List = () => {
         </button>
         <ul className="taskContainer">
           {currentTracker?.tasks.map((task) => (
-            <li key={task.id}>
-              {task.name}{" "}
-              <input
-                type="checkbox"
-                onChange={() => handleToogleTask(task.id)}
-                checked={task.isComplete}
-              />
+            <li className="task" key={task.id}>
+              <label className="task.name">{task.name}</label>
+              <div className="taskControls">
+                <input
+                  className="taskCheck"
+                  type="checkbox"
+                  onChange={() => handleToogleTask(task.id)}
+                  checked={task.isComplete}
+                />
+                <button
+                  className="taskDelete"
+                  onClick={() => handleRemoveTask(task.id)}
+                >
+                  delete
+                </button>
+              </div>
             </li>
           ))}
         </ul>

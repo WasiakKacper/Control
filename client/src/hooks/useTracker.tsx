@@ -74,6 +74,19 @@ export function useTracker() {
     );
   };
 
+  const handleRemoveTask = (idToRemove: number) => {
+    setTrackers((prevTrackers) =>
+      prevTrackers.map((tracker) =>
+        tracker.id === selectedId
+          ? {
+              ...tracker,
+              tasks: tracker.tasks.filter((task) => task.id !== idToRemove),
+            }
+          : tracker,
+      ),
+    );
+  };
+
   const { completionPercentage } = useMemo(() => {
     const currentTracker = trackers.find((t) => t.id === selectedId);
 
@@ -96,6 +109,7 @@ export function useTracker() {
     setSelectedId,
     handleAddTask,
     handleToogleTask,
+    handleRemoveTask,
     completionPercentage,
   };
 }
