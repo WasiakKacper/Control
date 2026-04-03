@@ -50,7 +50,7 @@ const LoginWindow: React.FC<LoginWindowProps> = ({ click }) => {
       viewport={{ once: true }}
     >
       <h4 className="loginHeader">Login</h4>
-      <form action="">
+      <form action="" noValidate>
         <input
           type="email"
           placeholder="E-mail"

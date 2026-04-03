@@ -16,15 +16,58 @@
     align-items: center;
     border-bottom: 2px solid #333;
   }
-  h4 {
-    padding-top: 1rem;
-    font-weight: 600;
-  }
-  ul {
-    padding: 1rem 0 0 0;
+
+  .sidebarHeader {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem;
+
+    .trackersSectionTitle {
+      font-weight: 600;
+      /* display: flex; */
+      /*       justify-content: center;
+      align-items: center; */
+      text-align: center;
+    }
+    .trackersExpand {
+      display: none;
+    }
+
+    @media only screen and (max-width: 768px) {
+      .trackersExpand {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        &.active {
+          rotate: 180deg;
+        }
+      }
+    }
+  }
+
+  .trackersWrapper {
+    width: 100%;
+    display: grid;
+    height: auto;
+    transition: max-height 500ms ease-in-out;
+    overflow-y: hidden;
+
+    @media only screen and (max-width: 768px) {
+      max-height: 0px;
+
+      &.expanded {
+        max-height: 3000px;
+      }
+    }
+
     li {
       width: 100%;
+      min-height: 0;
       cursor: pointer;
       padding: 0.3rem 1rem;
       transition: 300ms ease;

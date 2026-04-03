@@ -4,6 +4,8 @@ import List from "../List/List";
 import Chart from "../Chart/Chart";
 import { useTrackerContext } from "../../../hooks/useTrackerContext";
 import { useCurrentTracker } from "../../../hooks/useCurrentTracker";
+import Calendar from "../Calendar/Calendar";
+import Streak from "../Streak/Streak";
 
 const Hero = () => {
   const { updateTrackerName } = useTrackerContext();
@@ -34,28 +36,38 @@ const Hero = () => {
 
   return (
     <section className="heroContainer">
-      <div className="heroHeader">
-        {!isEditMode ? (
-          <h3 onDoubleClick={handleEditMode}>
-            {currentTracker != undefined
-              ? currentTracker.name
-              : "Choose tracker from list or create one!"}
-          </h3>
-        ) : (
-          <input
-            onBlur={saveAndExit}
-            onKeyDown={handleKeyDown}
-            onChange={(e) => setNewName(e.target.value)}
-            type="text"
-            placeholder="Tracker"
-            autoFocus
-          />
-        )}
-      </div>
-      <div className="heroRow">
-        <List />
-        <Chart />
-      </div>
+      {currentTracker != undefined ? (
+        <>
+          <header className="heroHeader">
+            {!isEditMode ? (
+              <h3 onClick={handleEditMode}>{currentTracker.name}</h3>
+            ) : (
+              <input
+                onBlur={saveAndExit}
+                onKeyDown={handleKeyDown}
+                onChange={(e) => setNewName(e.target.value)}
+                type="text"
+                placeholder="Tracker"
+                autoFocus
+              />
+            )}
+          </header>
+          <article className="heroWrapper">
+            <div className="heroRow">
+              <List />
+              <Chart />
+            </div>
+            <div className="heroRow">
+              <Streak count={1} lastActivity={2} />
+              <Calendar />
+            </div>
+          </article>
+        </>
+      ) : (
+        <h1 className="noTrackerMessage">
+          Choose tracker from list or create one!
+        </h1>
+      )}
     </section>
   );
 };

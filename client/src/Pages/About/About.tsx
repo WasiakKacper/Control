@@ -1,6 +1,6 @@
 import "./scss/About.scss";
 import { useState } from "react";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { cardsContent } from "./CardsData";
 import AboutCard from "./AboutCard";
@@ -68,7 +68,7 @@ const About = () => {
             </motion.p>
           ) : null,
         )}
-        <Link to="login" smooth={true} duration={300}>
+        <Link to="/dashboardDemo">
           <motion.p
             className="scrollToLoginBtn"
             variants={variants}

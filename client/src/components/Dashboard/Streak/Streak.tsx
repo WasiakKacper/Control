@@ -1,8 +1,9 @@
-/* Import scss */
 import "./scss/Streak.scss";
 
-/* Import type */
-import type { StreakType } from "../../Types/Types.tsx";
+type StreakType = {
+  count: number;
+  lastActivity: number;
+};
 
 const Streak: React.FC<StreakType> = ({ count, lastActivity }) => {
   const today = new Date();
