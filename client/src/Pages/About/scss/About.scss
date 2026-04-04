@@ -68,10 +68,11 @@
     font-size: clamp(1rem, 1vw, 1.2rem);
     gap: 3rem;
 
-    .scrollToLoginBtn {
+    .tryDemoButton {
       text-decoration: underline;
       font-family: "Notable", sans-serif;
       cursor: pointer;
+      margin: 5rem 0;
     }
   }
 }

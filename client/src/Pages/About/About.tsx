@@ -70,7 +70,7 @@ const About = () => {
         )}
         <Link to="/dashboardDemo">
           <motion.p
-            className="scrollToLoginBtn"
+            className="tryDemoButton"
             variants={variants}
             initial="hidden"
             whileInView="visible"
